@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package tokenmgmt;
+
+option go_package = "example.com/go-tokenmgmt-grpc;go_tokenmgmt_grpc";
+
+service TokenManagement {
+    rpc Create (Token_Create_I) returns (Token_Create_O) {}
+    rpc Drop (Token_Drop_I) returns (Token_Drop_O) {}
+    rpc Write (Token_Write_I) returns (Token_Write_O) {}
+    rpc Read (Token_Read_I) returns (Token_Read_O) {}
+    rpc CommunicationInfo (Comm_I) returns (Comm_O) {}
+}
+
+message Token_Create_I {
+    string id = 1;
+}
+
+message Token_Drop_I {
+    string id = 1;
+}
+
+message Token_Write_I {
+    string id = 1;
+    string name = 2;
+    uint64 low = 3;
+    uint64 mid = 4;
+    uint64 high = 5;
+}
+
+message Token_Read_I {
+    string id = 1;
+}
+
+message Token_Create_O {
+    string status = 1;
+}
+
+message Token_Drop_O {
+
+}
+
+message Token_Write_O {
+    string status = 1;
+    uint64 partial_Value = 2;
+}
+
+message Token_Read_O {
+    uint64 final_Value = 1;
+}
+
+message Comm_I{
+
+}
+
+message Comm_O{
+    string Comm_Info = 1;
+}
